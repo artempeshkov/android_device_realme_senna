@@ -1,9 +1,9 @@
 # Bluetooth
-bluetooth.device.default_name=OnePlus 10T 5G
+bluetooth.device.default_name=realme GT Neo5 150W
 
 # Graphics
 ro.surface_flinger.set_idle_timer_ms=4000
 ro.surface_flinger.set_touch_timer_ms=4000
 
 # USB
-vendor.usb.product_string=OnePlus 10T 5G
+vendor.usb.product_string=realme GT Neo5 150W

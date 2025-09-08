@@ -56,7 +56,10 @@ blob_fixups: blob_fixups_user_type = {
     'odm/lib64/libolc_vnd.so': blob_fixup()
         .replace_needed('vendor.oplus.hardware.touch-V1-ndk_platform.so', 'vendor.oplus.hardware.touch-V1-ndk.so')
         .replace_needed('vendor.oplus.hardware.olc2-V1-ndk_platform.so', 'vendor.oplus.hardware.olc2-V2-ndk.so'),
-    ('odm/lib64/camera/com.qti.sensor.ovaltine_imx766.so',
+    ('odm/lib64/camera/com.qti.sensor.imx890.22624.so','odm/lib64/camera/com.qti.sensor.imx355.22624.so',
+            'odm/lib64/camera/com.qti.sensor.gc02m1b.22624.so',
+            'odm/lib64/camera/com.qti.sensor.s5k3p9.22624.so',
+            'odm/lib64/camera/com.qti.sensor.ovaltine_imx766.so',
             'odm/lib64/camera/com.qti.sensor.ovaltine_ov02b.so',
             'odm/lib64/camera/com.qti.sensor.ovaltine_ov08d.so',
             'odm/lib64/camera/com.qti.sensor.ovaltine_s5k3p9.so',
@@ -133,6 +136,8 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('remote_handle_open')
         .clear_symbol_version('remote_register_buf_attr')
         .clear_symbol_version('remote_register_buf'),
+    ('odm/lib64/libarcsoft_dual_sat.so', 'odm/lib64/libarcsoft_dual_zoomtranslator.so', 'odm/lib64/libarcsoft_triple_sat.so', 'odm/lib64/libarcsoft_triple_zoomtranslator.so'): blob_fixup()
+        .add_needed('libc++_shared.so'),
     'odm/lib64/libextensionlayer.so': blob_fixup()
         .replace_needed('libziparchive.so', 'libziparchive_odm.so')
         .replace_needed('vendor.oplus.hardware.osense.client-V1-ndk_platform.so', 'vendor.oplus.hardware.osense.client-V1-ndk.so')
@@ -156,8 +161,8 @@ blob_fixups: blob_fixups_user_type = {
 }  # fmt: skip
 
 module = ExtractUtilsModule(
-    'ovaltine',
-    'oneplus',
+    'senna',
+    'realme',
     namespace_imports=namespace_imports,
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
@@ -166,6 +171,6 @@ module = ExtractUtilsModule(
 
 if __name__ == '__main__':
     utils = ExtractUtils.device_with_common(
-        module, 'sm8450-common', module.vendor
+        module, '../oneplus/sm8450-common', module.vendor
     )
     utils.run()
